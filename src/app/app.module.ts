@@ -8,9 +8,10 @@ import { LoginComponent } from "./login/login.component";
 import { HomeComponent } from "./home/home.component";
 import { HttpClientModule } from "@angular/common/http";
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { AdminPortalComponent } from './admin-portal/admin-portal.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent, NavBarComponent],
+  declarations: [AppComponent, LoginComponent, HomeComponent, NavBarComponent, AdminPortalComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [AuthService],
   bootstrap: [AppComponent]

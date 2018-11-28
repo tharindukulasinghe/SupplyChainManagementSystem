@@ -1,0 +1,135 @@
+<div class="row pulldown">
+  <div class="col-3">
+    <div class="list-group">
+      <a
+        class="list-group-item list-group-item-action"
+        routerLink="/admin-portal"
+        [queryParams]="{ section: '1' }"
+        [class.active]="section == 1"
+        >Train schedules</a
+      >
+      <a
+        class="list-group-item list-group-item-action"
+        routerLink="/admin-portal"
+        [queryParams]="{ section: '2' }"
+        [class.active]="section == 2"
+        >Unassigned Orders</a
+      >
+      <a
+        class="list-group-item list-group-item-action"
+        routerLink="/admin-portal"
+        [queryParams]="{ section: '3' }"
+        [class.active]="section == 3"
+        >Add a Train schedule</a
+      >
+    </div>
+  </div>
+  <div class="col">
+    <div class="card" *ngIf="section == 1">
+      <h5 class="card-header">Train schedules</h5>
+      <div class="card-body">
+        <h5 class="card-title">All Train Schedules</h5>
+        <br />
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">#ID</th>
+              <th scope="col">Train name</th>
+              <th scope="col">Leaving time</th>
+              <th scope="col">Destination</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let t of trains">
+              <th scope="row">{{ t.schedule_number }}</th>
+              <td>{{ t.name }}</td>
+              <td>{{ t.time }}</td>
+              <td>{{ t.destination }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card" *ngIf="section == 2">
+      <h5 class="card-header">Unassigned Orders</h5>
+      <div class="card-body">
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">#Order ID</th>
+              <th scope="col">Total Cost</th>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let t of uorders">
+              <th scope="row">{{ t.order_id }}</th>
+              <td>{{ t.total_cost }}</td>
+              <td>{{ t.time }}</td>
+              <td>{{ t.date }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card" *ngIf="section == 3">
+      <h5 class="card-header">Add a Train Schedule</h5>
+      <div class="card-body">
+        <form #f="ngForm" (ngSubmit)="onSubmit(f.value); f.reset()">
+          <div class="form-group">
+            <label for="id">Train schedule id</label>
+            <input
+              type="text"
+              class="form-control"
+              id="id"
+              aria-describedby=""
+              placeholder="Enter train schedule id"
+              ngModel
+              name="id"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Train name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputPassword1"
+              placeholder="Train name"
+              ngModel
+              name="name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword2">Leaving Time</label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputPassword2"
+              placeholder="Leaving Time"
+              ngModel
+              name="leavingtime"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword3">Destination</label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputPassword3"
+              placeholder="Destination"
+              ngModel
+              name="destination"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <div class="alert alert-danger" *ngIf="error" role="alert">
+            Error Occurred.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

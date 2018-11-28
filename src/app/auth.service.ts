@@ -22,4 +22,11 @@ export class AuthService {
     const token = localStorage.getItem("token");
     return token != null && !helper.isTokenExpired(token);
   }
+
+  getUserType() {
+    const helper = new JwtHelperService();
+    const token = localStorage.getItem("token");
+    const user = helper.decodeToken(token);
+    return user.payload.type;
+  }
 }
