@@ -22,6 +22,13 @@
         [class.active]="section == 3"
         >Add a Train schedule</a
       >
+      <a
+        class="list-group-item list-group-item-action"
+        routerLink="/admin-portal"
+        [queryParams]="{ section: '4' }"
+        [class.active]="section == 4"
+        >Assign Orders to Trains</a
+      >
     </div>
   </div>
   <div class="col">
@@ -126,6 +133,45 @@
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
           <div class="alert alert-danger" *ngIf="error" role="alert">
+            Error Occurred.
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card" *ngIf="section == 4">
+      <h5 class="card-header">Assign Orders</h5>
+      <div class="card-body">
+        <form #f="ngForm" (ngSubmit)="assign(f.value); f.reset()">
+          <div class="form-group">
+            <label for="exampleFormControlSelect1"
+              >Select a packaged Order</label
+            >
+            <select
+              ngModel
+              name="order_id"
+              class="form-control"
+              id="exampleFormControlSelect1"
+            >
+              <option *ngFor="let i of uorders">{{ i.order_id }}</option>
+            </select>
+          </div>
+          <br />
+          <div class="form-group">
+            <label for="exampleFormControlSelect1"
+              >Available Train Schedules</label
+            >
+            <select
+              ngModel
+              name="schedule_number"
+              class="form-control"
+              id="exampleFormControlSelect1"
+            >
+              <option *ngFor="let i of trains">{{ i.schedule_number }}</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Assign</button>
+          <div class="alert alert-danger" *ngIf="errort" role="alert">
             Error Occurred.
           </div>
         </form>

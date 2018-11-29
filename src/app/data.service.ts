@@ -21,4 +21,8 @@ export class DataService {
   getUnassignedOrders() {
     return this.http.get("http://localhost:3000/orders/getUnassigned");
   }
+
+  assign(details) {
+    return this.http.post("http://localhost:3000/orders/assign", details);
+  }
 }
